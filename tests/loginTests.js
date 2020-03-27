@@ -1,15 +1,26 @@
 module.exports = {
-
     '@tags' : ['Smoke', 'Login'],
-    'Login to Online Platform': function(browser){
-        const expected_fullName = 'Robert McMasters'
-        const mainPage = browser.page.main_page();
+    'Login to Product Platform': function(browser){
+        const loginPage = browser.page.login_page();
+        const homePage = browser.page.home_page();
+        const profilePage = browser.page.profile_page()
 
-        mainPage
+        const userEmail = process.env.USER_EMAIL;
+        const userPassword = process.env.USER_PASSWORD;
+        const user_fullName = process.env.USER_FULLNAME;
+
+
+        loginPage
             .maximizeWindow()
-            .useXpath()
             .navigate()
-            .login('robmcmasters.xbtech@gmail.com', '4nddE&8^L(QNja')
-            .verify_userLoggedInSuccessfully(expected_fullName)
+            .login(userEmail, userPassword)
+            .useXpath().waitForElementPresent(navigator_header, timeout, false, message="Wait for header displayed")
+
+        homePage
+            .navigateToProfilePage()
+        
+        profilePage
+            .verifyUserFullName(user_fullName)
+            .end()
     }
 }

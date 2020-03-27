@@ -4,13 +4,16 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "nightwatch"
+    "test": "nightwatch",
+    "test:browserstack":"nightwatch -c nightwatch.browserstack.conf.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "nightwatch": "^1.3.4",
-    "chromedriver": "80.0.1"
+    "nightwatch": "^1.3.4"
+  },
+  "dependencies": {
+    "dotenv": "^8.2.0"
   }
 }
