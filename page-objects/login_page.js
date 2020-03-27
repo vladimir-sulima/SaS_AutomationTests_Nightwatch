@@ -19,7 +19,7 @@ module.exports = {
             .setValue(email_inputField, username)
             .setValue(password_inputField, password)
             .click(login_submitButton)
-            .waitForElementPresent("//div[@class='q-toolbar row no-wrap items-center']//div[text()='navigator']", timeout, abortOnFailure=true, message='"navigator" header displayed - Main page.')
+            .waitForElementPresent("//div[@class='q-toolbar row no-wrap items-center']//div[text()='navigator']", 30000, abortOnFailure=true, message='"navigator" header displayed - Main page.')
             
         },
     }]

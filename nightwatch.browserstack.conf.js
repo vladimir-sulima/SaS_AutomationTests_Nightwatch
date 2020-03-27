@@ -23,6 +23,18 @@ nightwatch_config = {
            'browser': 'chrome',
          }
       },
+      chrome:{
+        desiredCapabilities: {
+        'browserstack.user': browserstack_user,
+        'browserstack.key': browserstack_key,
+        "os" : "Windows",
+        "os_version" : "10",
+        "browser" : "Chrome",
+        "browser_version" : "80.0",
+        "browserstack.local" : "false",
+        "browserstack.selenium_version" : "3.5.2",
+     }
+   },
       firefox:{
         desiredCapabilities: {
         'browserstack.user': browserstack_user,
@@ -30,9 +42,9 @@ nightwatch_config = {
         "os" : "Windows",
         "os_version" : "10",
         "browser" : "Firefox",
-        "browser_version" : "75.0 beta",
+        "browser_version" : "74.0",
         "browserstack.local" : "false",
-        "browserstack.selenium_version" : "3.5.2",
+        "browserstack.selenium_version" : "3.10.0",
      }
    },
       safari:{
