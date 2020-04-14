@@ -1,6 +1,6 @@
 
 module.exports = {
-    '@tags' : ['Smoke', 'Navigator', 'US27924'],
+    '@tags' : ['Regression', 'Navigator', 'US27924'],
     'US27924 L&P Quick View': function(browser){
         currentBrowser = browser.options.desiredCapabilities.browser;
         const loginPage = browser.page.login_page();
@@ -16,8 +16,8 @@ module.exports = {
         var jurisdictions = ['Germany', 'Hong Kong'];
         var services = ['Funds'];
         var products = ['Factoring']
-        var activities = ['Criminal'];
-        var subactivities = ['Client type'];
+        var activities = ['All'];
+        var subactivities = ['All'];
 
    
 

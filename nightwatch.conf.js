@@ -1,11 +1,11 @@
 const dotenv = require('dotenv');
 dotenv.config();
 environment_url = process.env.ENVIRONMENT_URL;
-timeout = process.env.WAIT_ELEMENT_TIMEOUT;
 
 module.exports = {
     "src_folders" : ["tests"],
     "page_objects_path" : ['page-objects', 'page-objects/navigator'],
+    "globals_path": "globalsModule.js",
   
     "webdriver" : {
       "start_process": true,
@@ -14,6 +14,7 @@ module.exports = {
     },
     "test_settings" : {
       "default" : {
+        // "launch_url":"https://nightwatchjs.org/",
         "desiredCapabilities": {
           'browserName': 'chrome'
         }

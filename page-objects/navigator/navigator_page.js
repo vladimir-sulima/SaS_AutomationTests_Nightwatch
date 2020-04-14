@@ -1,8 +1,8 @@
-jurisdiction_optionFilter = "(//div[@class='q-field__inner relative-position col self-stretch column justify-center'])[1]/..";
+jurisdiction_optionFilter = "//*[@id='pp-location-filter']/label/div";
 service_optionFilter = "//div[@class='header--label' and contains(text(),'Service')]/..";
-product_optionFilter = "//div[@class='header--label' and contains(text(),'Product')]/..";
-activity_optionFilter = "//div[@class='header--label' and contains(text(),'Activity')]/..";
-subActivity_optionFilter = "//div[@class='header--label' and contains(text(),'Sub Activity')]/..";
+product_optionFilter = "//*[@id='pp-product-filter']";
+activity_optionFilter = "//*[@id='pp-activity-filter']";
+subActivity_optionFilter = "//*[@id='pp-subActivity-filter']";
 
 jurisdictionOptionFilterLoaded = "//label[@class='q-field row no-wrap items-start q-select q-field--auto-height q-select--without-input q-field--borderless q-field--dense product-select-empty']//div[contains(text(), 'Jurisdiction')]";
 productOptionFilterLoaded = "//label[@class='q-field row no-wrap items-start q-select q-field--auto-height q-select--without-input q-field--borderless q-field--dense product-select-empty']//div[contains(text(), 'Product')]";
@@ -10,6 +10,7 @@ activityOptionFilterLoaded = "//label[@class='q-field row no-wrap items-start q-
 subActivityOptionFilterLoaded = "//label[@class='q-field row no-wrap items-start q-select q-field--auto-height q-select--without-input q-field--borderless q-field--dense product-select-empty']//div[contains(text(), 'Sub Activity')]";
 
 expandedDDL = "//div[@class='q-menu q-position-engine scroll']";
+loadSpinner = "//div[@class='product-fetching']";
 clearCategory_link = "//div[@class='header--label' and contains(text(),'Category')]/../../..//span[text()='clear']";
 
 module.exports = {
@@ -18,19 +19,18 @@ module.exports = {
         selectJurisdictionByName(jurisdictions){
             this.api.perform((done)=> {
 
-                this.waitForElementPresent(jurisdiction_optionFilter, timeout, message='"Jurisdiction" ddl loaded - Navigator page.');
-                this.pause(1500);         
-
-                this.click(jurisdiction_optionFilter);
-
-                if(currentBrowser == 'IE'){
-                    this.click(jurisdiction_optionFilter);
-                }
-
-                this.waitForElementPresent(expandedDDL, timeout, message=`"Jurisdiction" menu expanded - Navigator page.`);
-                
+                // if(currentBrowser == 'IE'){
+                //     this.click(jurisdiction_optionFilter);
+                // }
                 jurisdictions.forEach((element) => {
-                    this.click(`//div[@class='q-item__label' and text()='${element}']`)
+                    this.waitForElementPresent(jurisdiction_optionFilter, message='"Jurisdiction" ddl loaded - Navigator page.');
+                    this.pause(500);         
+                    this.click(jurisdiction_optionFilter);
+                    this.waitForElementPresent(expandedDDL, message=`"Jurisdiction" menu expanded - Navigator page.`);
+
+
+                    this.click(`//div[@class='q-item__label' and text()='${element}']`);
+                    this.waitForElementNotPresent(loadSpinner, message='Wait for load spinner not visible')
                 });
                 done();
             })
@@ -39,12 +39,15 @@ module.exports = {
         selectServiceByName(services){
             this.api.perform((done)=> {
 
-                this.waitForElementPresent(service_optionFilter, timeout, message='"Service" ddl loaded - Navigator page.')
+                this.waitForElementVisible(service_optionFilter, message='"Service" ddl loaded - Navigator page.')
+
                 this.click(service_optionFilter);
-                this.waitForElementPresent(expandedDDL, timeout, message='"Service" menu expanded - Navigator page.');
+                this.waitForElementPresent(expandedDDL, message='"Service" menu expanded - Navigator page.');
                 
                 services.forEach((element) => {
+                    
                     this.click(`//div[@class='q-item__label' and text()='${element}']/../..`);
+                    this.waitForElementNotPresent(loadSpinner, message='Wait for load spinner not visible')
                 })
 
                 done();
@@ -55,12 +58,13 @@ module.exports = {
         selectProductByName(products){
             this.api.perform((done)=> {
 
-                this.waitForElementPresent(productOptionFilterLoaded, timeout, message='"Product" ddl loaded - Navigator page')
+                this.waitForElementPresent(productOptionFilterLoaded, message='"Product" ddl loaded - Navigator page')
                 this.click(product_optionFilter);
-                this.waitForElementPresent(expandedDDL, timeout, message='"Product" menu expanded - Navigator page');
+                this.waitForElementPresent(expandedDDL, message='"Product" menu expanded - Navigator page');
                 
                 products.forEach((element) => {
                     this.click(`//div[@class='q-item__label' and text()='${element}']/../..`);
+                    this.waitForElementNotPresent(loadSpinner, message='Wait for load spinner not visible');
                 })
                 
                 done();
@@ -71,12 +75,13 @@ module.exports = {
         selectActivityByName(activities){
             this.api.perform((done)=> {
 
-                this.waitForElementPresent(activityOptionFilterLoaded, timeout, message='"Activity" ddl loaded - Navigator page')
+                this.waitForElementPresent(activityOptionFilterLoaded, message='"Activity" ddl loaded - Navigator page')
                 this.click(activity_optionFilter);
-                this.waitForElementPresent(expandedDDL, timeout, message='"Activity" menu expanded - Navigator page');
+                this.waitForElementPresent(expandedDDL, message='"Activity" menu expanded - Navigator page');
                 
                 activities.forEach((element) => {
                     this.click(`//div[@class='q-item__label' and text()='${element}']/../..`);
+                    this.waitForElementNotPresent(loadSpinner, message='Wait for load spinner not visible');
                 })
                 done();
 
@@ -86,12 +91,13 @@ module.exports = {
         selectSubActivityByName(subActivities){
             this.api.perform((done)=> {
 
-                this.waitForElementPresent(subActivityOptionFilterLoaded, timeout, message='"Sub Activity" ddl loaded - Navigator page')
+                this.waitForElementPresent(subActivityOptionFilterLoaded, message='"Sub Activity" ddl loaded - Navigator page')
                 this.click(subActivity_optionFilter);
-                this.waitForElementPresent(expandedDDL, timeout, message='"Sub Activity" menu expanded - Navigator page');
+                this.waitForElementPresent(expandedDDL, message='"Sub Activity" menu expanded - Navigator page');
                 
                 subActivities.forEach((element) => {
                     this.click(`//div[@class='q-item__label' and text()='${element}']/../..`);
+                    this.waitForElementNotPresent(loadSpinner, message='Wait for load spinner not visible')
                 })
                 done();
 
@@ -105,7 +111,7 @@ module.exports = {
         verifyJurisdiction_FilteOptionExist(){
             this.api.perform((done)=> {
 
-                this.waitForElementPresent(jurisdiction_optionFilter, timeout, message='Wait for "Jurisdiction" filter option visible - Navigator page');
+                this.waitForElementPresent(jurisdiction_optionFilter, message='"Jurisdiction" filter option visible - Navigator page');
                 done();
             })
             
@@ -114,7 +120,7 @@ module.exports = {
         verifyService_FilteOptionExist(){
             this.api.perform((done)=> {
 
-                this.waitForElementPresent(service_optionFilter, timeout, message='Wait for "Service" filter option visible - Navigator page');
+                this.waitForElementPresent(service_optionFilter, message='"Service" filter option visible - Navigator page');
                 done();
             })
             
@@ -123,7 +129,7 @@ module.exports = {
         verifyProduct_FilteOptionExist(){
             this.api.perform((done)=> {
 
-                this.waitForElementPresent(product_optionFilter, timeout, message='Wait for "Product" filter option visible - Navigator page');
+                this.waitForElementPresent(product_optionFilter, message='"Product" filter option visible - Navigator page');
                 done();
             })
             
@@ -132,7 +138,7 @@ module.exports = {
         verifyActivity_FilteOptionExist(){
             this.api.perform((done)=> {
 
-                this.waitForElementPresent(activity_optionFilter, timeout, message='Wait for "Activity" filter option visible - Navigator page');
+                this.waitForElementPresent(activity_optionFilter, message='"Activity" filter option visible - Navigator page');
                 done();
             })
             
@@ -141,7 +147,7 @@ module.exports = {
         verifySubActivity_FilteOptionExist(){
             this.api.perform((done)=> {
 
-                this.waitForElementPresent(subActivity_optionFilter, timeout, message='Wait for "Sub Activity" filter option visible - Navigator page');
+                this.waitForElementPresent(subActivity_optionFilter, message='"Sub Activity" filter option visible - Navigator page');
                 done();
             })
             

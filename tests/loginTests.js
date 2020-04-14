@@ -14,7 +14,6 @@ module.exports = {
             .maximizeWindow()
             .navigate()
             .login(userEmail, userPassword)
-            .useXpath().waitForElementPresent(navigator_header, timeout, false, message="Wait for header displayed")
 
         homePage
             .navigateToProfilePage()

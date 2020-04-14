@@ -1,14 +1,15 @@
 const dotenv = require('dotenv');
 dotenv.config();
 environment_url = process.env.ENVIRONMENT_URL;
-timeout = process.env.WAIT_ELEMENT_TIMEOUT;
-browserstack_user=process.env.BROWSERSTACK_USER;
-browserstack_key=process.env.BROWSERSTACK_KEY;
+// timeout = process.env.WAIT_ELEMENT_TIMEOUT;
+browserstack_username=process.env.BROWSERSTACK_USERNAME;
+browserstack_access_key=process.env.BROWSERSTACK_ACCESS_KEY;
 
 
 nightwatch_config = {
     "src_folders" : ["tests"],
     "page_objects_path" : ['page-objects', 'page-objects/navigator'],
+    "globals_path": "globalsModule.js",
      selenium : {
        "start_process" : false,
        "host" : "hub-cloud.browserstack.com",
@@ -18,15 +19,15 @@ nightwatch_config = {
      test_settings: {
        default: {
          desiredCapabilities: {
-           'browserstack.user': browserstack_user,
-           'browserstack.key': browserstack_key,
+           'browserstack.user': browserstack_username,
+           'browserstack.key': browserstack_access_key,
            'browser': 'chrome',
          }
       },
       chrome:{
         desiredCapabilities: {
-        'browserstack.user': browserstack_user,
-        'browserstack.key': browserstack_key,
+        'browserstack.user': browserstack_username,
+        'browserstack.key': browserstack_access_key,
         "os" : "Windows",
         "os_version" : "10",
         "browser" : "Chrome",
@@ -37,8 +38,8 @@ nightwatch_config = {
    },
       firefox:{
         desiredCapabilities: {
-        'browserstack.user': browserstack_user,
-        'browserstack.key': browserstack_key,
+        'browserstack.user': browserstack_username,
+        'browserstack.key': browserstack_access_key,
         "os" : "Windows",
         "os_version" : "10",
         "browser" : "Firefox",
@@ -49,8 +50,8 @@ nightwatch_config = {
    },
       safari:{
         desiredCapabilities: {
-        'browserstack.user': browserstack_user,
-        'browserstack.key': browserstack_key,
+        'browserstack.user': browserstack_username,
+        'browserstack.key': browserstack_access_key,
         "os" : "OS X",
         "os_version" : "El Capitan",
         "browser" : "Safari",
@@ -61,8 +62,8 @@ nightwatch_config = {
    },
         ie:{
             desiredCapabilities: {
-            'browserstack.user': browserstack_user,
-            'browserstack.key': browserstack_key,
+            'browserstack.user': browserstack_username,
+            'browserstack.key': browserstack_access_key,
             "os" : "Windows",
             "os_version" : "10",
             "browser" : "IE",
@@ -73,8 +74,8 @@ nightwatch_config = {
        },
        edge:{
         desiredCapabilities: {
-        'browserstack.user': browserstack_user,
-        'browserstack.key': browserstack_key,
+        'browserstack.user': browserstack_username,
+        'browserstack.key': browserstack_access_key,
         "os" : "Windows",
         "os_version" : "10",
         "browser" : "Edge",

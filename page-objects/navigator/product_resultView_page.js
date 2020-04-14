@@ -14,7 +14,7 @@ module.exports = {
         verifyDetailedViewExist_ProductResultView(){
             this.api.perform((done)=> {
 
-                this.waitForElementPresent(detailedView_button, timeout, message='"Detaiuled view" menu option displayed - Product result view.');
+                this.waitForElementPresent(detailedView_button, message='"Detaiuled view" menu option displayed - Product result view.');
                 done();
 
             })
@@ -23,7 +23,7 @@ module.exports = {
         verifyQuickViewExist_ProductResutView(){
             this.api.perform((done)=> {
 
-                this.waitForElementPresent(quickView_button, timeout, message='"Quick view" menu option displayed - Product result view.');
+                this.waitForElementPresent(quickView_button, message='"Quick view" menu option displayed - Product result view.');
                 done();
 
             })
@@ -32,7 +32,7 @@ module.exports = {
         verifyExemptionsCategorySectionExist_ProductResutView(){
             this.api.perform((done)=> {
 
-                this.waitForElementPresent(exemption_categorySection, timeout, message='"Exemps" category exist - Product result view.');
+                this.waitForElementPresent(exemption_categorySection, message='"Exemps" category exist - Product result view.');
                 done();
 
             })
@@ -41,7 +41,7 @@ module.exports = {
         verifyRestrictionsCategorySectionExist_ProductResutView(){
             this.api.perform((done)=> {
 
-                this.waitForElementPresent(restrictions_categorySection, timeout, message='"Restrictions" category exist - Product result view.');
+                this.waitForElementPresent(restrictions_categorySection, message='"Restrictions" category exist - Product result view.');
                 done();
             })
             return this;
@@ -49,7 +49,7 @@ module.exports = {
         verifySanctionsCategorySectionExist_ProductResutView(){
             this.api.perform((done)=> {
 
-                this.waitForElementPresent(sanctions_categorySection, timeout, message='"Sanctions" category exist - Product result view.');
+                this.waitForElementPresent(sanctions_categorySection, message='"Sanctions" category exist - Product result view.');
                 done();
             })
             return this;
@@ -57,7 +57,7 @@ module.exports = {
         verifyUnsolicitedApproachCategorySectionExist_ProductResutView(){
             this.api.perform((done)=> {
 
-                this.waitForElementPresent(unsolicitedApproach_categorySection, timeout, message='"Unsolicited approach" category exist - Product result view.');
+                this.waitForElementPresent(unsolicitedApproach_categorySection, message='"Unsolicited approach" category exist - Product result view.');
                 done();
             })
             return this;

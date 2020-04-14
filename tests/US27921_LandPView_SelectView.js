@@ -1,5 +1,5 @@
 module.exports = {
-    '@tags' : ['Smoke', 'Navigator', 'US27921'],
+    '@tags' : ['Regression', 'US27921'],
     'US27921 L&P - Detailed and Quick views exist': function(browser){
         currentBrowser = browser.options.desiredCapabilities.browser;
         const loginPage = browser.page.login_page();
@@ -22,10 +22,10 @@ module.exports = {
 
         navigatorPage
             .selectJurisdictionByName(["Germany", "Hong Kong"])
-            .selectServiceByName(["Funds"])
-            .selectProductByName(["Factoring"])
-            .selectActivityByName(["Criminal"])
-            .selectSubActivityByName(["Client type"])
+            .selectServiceByName(["Lending", "Securities"])
+            .selectProductByName(["Commodity derivatives", "Arranging Primary Loans"])
+            .selectActivityByName(["All"])
+            .selectSubActivityByName(["All"])
 
         licensingResultPage
             .verifyDetailedViewExist_LicensingResultView()
@@ -37,7 +37,6 @@ module.exports = {
         productResultPage
             .verifyDetailedViewExist_ProductResultView()
             .verifyQuickViewExist_ProductResutView()
-
 
             .end()
 
